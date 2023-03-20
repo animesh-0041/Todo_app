@@ -1,0 +1,111 @@
+<html>
+ <head> 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
+  <meta charset="UTF-8"> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Todo App</title> 
+  <style>
+        body{
+            background-color: bisque;
+        }
+    </style> 
+ </head> 
+ <body> 
+  <div class="container my-5"> 
+   <h4 class="my-5">Items Add ,edit and delete Project</h4> 
+   <div class="input-group mb-3"> <!-- input --> 
+    <input id="write" type="text" class="form-control" placeholder="type item..." aria-label="Recipient's username" aria-describedby="button-addon2"> <!-- button --> 
+    <div class="input-group-append  mx-2 "> <button class="btn btn-success" type="button" id="button-addon2">Add</button> 
+    </div> <!-- <div class="input-group-append  mx-2 ">
+            <button type="reset" id="reset" value="reset" class="btn btn-outline-danger">Reset</button>
+         
+        </div> --> <!-- list --> 
+   </div> 
+   <ul class="list-group" id="ul"> <!-- <li class="list-group-item d-flex justify-content-between ">
+            <h5 class="flex-grow-1">Demo item add </h5>
+            <button class="btn btn-outline-primary mx-2  ">edit</button> 
+            <button class="btn btn-outline-danger">remove</button> 
+        </li>
+             --> 
+   </ul> 
+  </div> 
+  <script>
+        let btn=document.getElementById("button-addon2");
+        btn.addEventListener('click',addItem);
+        let word;    
+
+        function addItem(){
+            let word=document.getElementById("write").value;
+            if(word==""){
+
+            }
+            else{
+                let li=document.createElement("li");
+            li.className="list-group-item d-flex justify-content-between";
+            li.innerHTML=` <h5 class="flex-grow-1">${word} </h5>
+            <button class="btn btn-primary mx-2  " id="edit" onclick="edit(this)">Edit</button> 
+            <button class="btn btn-danger" id="remove" onclick="remove(this)">Delete</button> `;
+            let ul=document.getElementById("ul");
+            ul.append(li);
+            // let editButton=document.createElement("BUTTON");
+            // let editText=document.createTextNode("edit");
+            // editButton.appendChild(editText);
+            // let removButton=document.createElement("BUTTON");
+        //    editButton.className("btn btn-outline-success");
+        // //    removButton.classList.add("btn btn-outline-success");
+        //   let n=document.getElementById("ul")
+        //   li.append(editButton);
+            }   
+        }
+
+
+        function remove(e){
+            let parentElementRemove=e.parentElement;
+            parentElementRemove.remove();
+        }
+        function edit(e){
+            if(e.textContent=="Done"){
+                e.textContent="Edit";
+               let newv=e.previousElementSibling.value;
+                let ch3=document.createElement("h5");
+                ch3.className="flex-grow-1";
+                ch3.textContent=newv;
+                // console.log(ch3.textContent);
+                e.parentElement.replaceChild(ch3,e.previousElementSibling);
+
+            }
+            else{
+                e.textContent="Done"
+
+
+                let nv=e.previousElementSibling.textContent;
+                // console.log(nv)
+
+
+
+                let editInput=document.createElement("input");
+                editInput.className="form-control";
+                editInput.type="text";
+                editInput.value=nv;
+                e.parentElement.replaceChild(editInput,e.previousElementSibling);
+
+            }
+               
+
+            
+
+
+
+
+        }
+       
+
+
+
+
+
+
+    </script> 
+ </body>
+</html>
